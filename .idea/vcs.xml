@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/blog-express-mongodb-application" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/bus-timetable-api-application" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/bus-timetable-ios-application" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/bus-timetable-okhttp-kotlin-application" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/bus_timetable_retrofit_kotlin_application" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/express-javascript-example" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/fastlane-plugin-application" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/final-year-project-application" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/focus-meditation-application" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github-simple-retrofit-kotlin-application" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mockk-testing-kotlin-application" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/module-ios-application" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/module-kotlin-application" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/okhttp-android-example" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/reddit-api-application" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/retrofit-android-example" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/swift-ui-snapshot-application" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/swift-ui-snapshot-application/computer-science-encyclopedia" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/template-repository" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/unit-and-ui-testing-kotlin" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/unit-testing-jest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/visual-studio-personal-settings" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/websocket-client-server-javascript-application" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/websocket-starscreams-ios-application" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/youtube-rss-feed-links" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/youtube-xml-to-json-application" vcs="Git" />
+  </component>
+</project>
