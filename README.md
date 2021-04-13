@@ -183,3 +183,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
 ```
+
+https://stackoverflow.com/questions/240152/why-would-i-want-to-use-interfaces
+
+https://www.baeldung.com/kotlin/interfaces
