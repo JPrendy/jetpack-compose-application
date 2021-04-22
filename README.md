@@ -1,8 +1,8 @@
-# template-repository
+# Jetpack Compose application
 
 ## Description
 
-The existing repository is a template, I can generate new repositories with the same directory structure, branches, and files.
+A Kotlin Application that uses Jetpack Compose to show how you can create a layout without using a xml file, it also includes an interface class and explains why you would want to use interfaces when developing an application.
 
 ## Contents
 
@@ -16,16 +16,168 @@ The existing repository is a template, I can generate new repositories with the 
 
 ## Setup Steps
 
-```
-Code here
+The following is a brief example of how you can create a layout without needing a xml file with Jetpack Compose, this is important as Jetpack Compose will be the future of how we create layout for Android development.
+
+The following is a brief example of how you can set text and images using Jetpack Compose.
+
+```kotlin
+package com.example.testcompose
+
+import android.os.Bundle
+import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.example.testcompose.ui.theme.TestComposeTheme
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val standardPackage = PackageFactory.getHostingFrom(PackageType.STANDARD)
+        val inheritedInterfaceFunction = PremiumPackage().getServices()
+        val interfaceFunction = PremiumPackage().getDiscount()
+        setContent {
+            TestComposeTheme {
+                // A surface container using the 'background' color from the theme
+                Surface(color = MaterialTheme.colors.background) {
+                    Greeting(inheritedInterfaceFunction, interfaceFunction)
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun Greeting(inherited: String, nonInherited: String) {
+    Column {
+        Text(
+            text = "Hello $inherited!",
+            modifier = Modifier
+                .padding(8.dp)
+        )
+        Text(
+            text = "Hello $nonInherited!",
+            modifier = Modifier
+                .padding(8.dp)
+        )
+        NewsStory()
+    }
+}
+
+@Composable
+fun NewsStory() {
+    MaterialTheme {
+        val typography = MaterialTheme.typography
+        Column(
+            modifier = Modifier.padding(16.dp)
+        ) {
+            Image(
+                painter = painterResource(R.drawable.regigigas),
+                contentDescription = null,
+                modifier = Modifier
+                    .height(180.dp)
+                    .fillMaxWidth()
+                    .clip(shape = RoundedCornerShape(4.dp)),
+                contentScale = ContentScale.Crop
+            )
+
+            Text("A day in Shark Fin Cove", style = typography.body2)
+            Text("Davenport, California", style = typography.body2)
+            Text("December 2018", style = typography.body2)
+        }
+    }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    TestComposeTheme {
+        Greeting("Inherited", "Non Inherited")
+        NewsStory()
+    }
+}
 ```
 
-<p><img src="images/exampleImage.png" width="300"/></p>
+We also have some Interface examples in this application. Interfaces are good as whenever we inherit an interface, we must also implement methods defined in our interface, we can inherit multiple inferfaces where we can only inherit one class.
+
+Also, The key point is that interfaces provide a layer of abstraction so that you can write code that is ignorant of unnecessary details. Interfaces can also be used for Factory patterns which controls which objects to instantiate, see the following [link](https://www.raywenderlich.com/18409174-common-design-patterns-and-app-architectures-for-android#toc-anchor-006:~:text=maintain.-,Factory)
+
+Another good part about Interfaces is it allows for parallel development, let's say two teams working on different components that must co-operate. If the two teams sit down on day 1 and agree on a set of interfaces, then they can go their separate ways and implement their components around those interfaces.
+
+```kotlin
+package com.example.testcompose
+
+interface SimpleInterface {
+    fun getServices(): String
+}
+
+enum class PackageType {
+    STANDARD,
+    PREMIUM
+}
+
+class StandardPackage: SimpleInterface {
+    override fun getServices(): String {
+        return "standard package"
+    }
+}
+
+class PremiumPackage: SimpleInterface {
+    override fun getServices(): String {
+        return "premium package"
+    }
+
+    fun getDiscount(): String {
+        return "15 %"
+    }
+}
+
+class PlatinumPackage: SimpleInterface {
+    //have to implement members when using an interface
+    override fun getServices(): String {
+        TODO("Not yet implemented")
+    }
+
+}
+
+object PackageFactory {
+    fun getHostingFrom(type: PackageType): String {
+        return when(type){
+            PackageType.STANDARD -> {
+                StandardPackage().getServices()
+            }
+            PackageType.PREMIUM -> {
+                PremiumPackage().getServices()
+            }
+        }
+    }
+}
+```
 
 ## How to run the project locally
 
+To run the unit tests locally.
+
+```kotlin
+./gradlew testdebugUnitTest
 ```
-Code here
+
+To run the ui tests locally, but first we need an emulator to be open.
+
+```kotlin
+./gradlew connectedCheck
 ```
 
 ## Tools
@@ -70,120 +222,17 @@ How to manage releases in a repository [link](https://help.github.com/en/github/
 
 ## Helpful resources
 
-The following link provides helpful information
-- [link](https://github.com/JPrendy/template-repository).
+The following link provides a video that explains how you parse api data using `Retrofit` and display that data with `Jetpack Compose`.
+- [link](https://www.youtube.com/watch?app=desktop&v=eMVxhlBsxEk).
 
+The following link provides a Udemy course on `Android Jetpack, clean architecture & Testing`. 
+- [link](https://www.udemy.com/course/android-architecture-componentsmvvm-with-dagger-retrofit/).
 
+The following link provides help on how you add a newline to `Jetpack Compose` text. 
+- [link](https://stackoverflow.com/questions/65877507/in-jetpack-compose-text-causes-newline).
 
+The following link provides information on why you would want to use `interfaces`. 
+- [link](https://stackoverflow.com/questions/240152/why-would-i-want-to-use-interfaces).
 
-
-
-
-
-https://nglauber.medium.com/jetpack-compose-part-ii-async-data-tabs-scroller-fab-state-efc8e267b914
-
-https://www.youtube.com/watch?app=desktop&v=eMVxhlBsxEk
-
-https://www.udemy.com/course/android-architecture-componentsmvvm-with-dagger-retrofit/
-
-```kotlin
-package com.example.testcompose
-
-import android.app.ListActivity
-import android.content.Intent
-import android.os.Bundle
-import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.example.testcompose.ui.theme.TestComposeTheme
-
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            TestComposeTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
-                    NewsStory()
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-
-}
-
-@Composable
-fun NewsStory() {
-    MaterialTheme {
-        val typography = MaterialTheme.typography
-        Column(
-            modifier = Modifier.padding(16.dp)
-        ) {
-            Image(
-                painter = painterResource(R.drawable.regigigas),
-                contentDescription = null,
-                modifier = Modifier
-                    .height(180.dp)
-                    .fillMaxWidth()
-                    .clip(shape = RoundedCornerShape(4.dp)),
-                contentScale = ContentScale.Crop
-            )
-
-            Text("A day in Shark Fin Cove", style = typography.body2)
-            Text("Davenport, California", style = typography.body2)
-            Text("December 2018", style = typography.body2)
-        }
-    }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    TestComposeTheme {
-        Greeting("Android")
-        NewsStory()
-    }
-}
-```
-
-```kotlin
-dependencies {
-
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling:$compose_version"
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-alpha06'
-    implementation 'androidx.activity:activity-compose:1.3.0-alpha02'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-}
-```
-
-https://stackoverflow.com/questions/240152/why-would-i-want-to-use-interfaces
-
-https://www.baeldung.com/kotlin/interfaces
+The following link provides Guide to Kotlin `interfaces` and how they work, it is quite helpful. 
+- [link](https://www.baeldung.com/kotlin/interfaces).
