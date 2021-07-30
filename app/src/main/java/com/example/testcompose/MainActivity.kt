@@ -48,7 +48,7 @@ fun Greeting(inherited: String, nonInherited: String) {
             modifier = Modifier
                 .padding(8.dp)
         )
-        NewsStory()
+//        NewsStory()
     }
 }
 
